@@ -1,4 +1,6 @@
-public class Carro {
+import java.io.Serializable;
+
+public class Carro implements Serializable{
     private String nome;
     private String renavam;
     private String categoria;
@@ -6,7 +8,7 @@ public class Carro {
     private int quantidade;
     private double preco;
 
-    public Carro(String nome, String renavam, String categoria, String anoFabricacao, int quantidade, double preco) {
+    public Carro(String nome, String renavam, String categoria, String anoFabricacao, int quantidade, double preco ) {
         this.nome = nome;
         this.renavam = renavam;
         this.categoria = categoria;
