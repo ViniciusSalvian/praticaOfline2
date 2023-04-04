@@ -1,11 +1,17 @@
 import java.rmi.RemoteException;
+import java.rmi.server.RMIClientSocketFactory;
+import java.rmi.server.RMIServerSocketFactory;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 
-public class SistemaImpl implements Sistema {
-
+public class SistemaImpl extends UnicastRemoteObject implements ISistema {
     private List<Carro> carroList;
 
-    @Override
+    protected SistemaImpl() throws RemoteException {
+        
+    }
+
+
     public Carro buscaCarroByName(String name) throws RemoteException {
         for (Carro carro : carroList) {
             if (carro.getNome().equals(name)) {
@@ -15,7 +21,6 @@ public class SistemaImpl implements Sistema {
         return null;
     }
 
-    @Override
     public Carro buscaCarroByRenavam(String renavam) throws RemoteException {
         for (Carro carro : carroList) {
             if (carro.getRenavam().equals(renavam)) {
@@ -25,17 +30,14 @@ public class SistemaImpl implements Sistema {
         return null;
     }
 
-    @Override
     public void adicionaCarro(Carro carro) throws RemoteException {
         carroList.add(carro);
     }
 
-    @Override
     public void removeCarro(Carro carro) throws RemoteException {
         carroList.remove(carro);
     }
 
-    @Override
     public List<Carro> getCarroList() throws RemoteException {
        return carroList;
     }

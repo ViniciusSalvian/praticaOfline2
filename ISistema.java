@@ -2,7 +2,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
 
-public interface Sistema extends Remote {
+public interface ISistema extends Remote {
     Carro buscaCarroByName(String name) throws RemoteException;
     Carro buscaCarroByRenavam(String renavam) throws RemoteException;
     void adicionaCarro(Carro carro) throws RemoteException;
