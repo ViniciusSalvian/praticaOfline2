@@ -2,6 +2,8 @@ import java.io.Serializable;
 
 public class Carro implements Serializable{
     private static final long serialVersionUID = 1L;
+    private int id;
+
     private String nome;
     private String renavam;
     private String categoria;
@@ -9,17 +11,26 @@ public class Carro implements Serializable{
     private int quantidade;
     private double preco;
 
-    public Carro(String nome, String renavam, String categoria, String anoFabricacao, int quantidade, double preco ) {
+    public Carro(int id, String nome, String renavam, String categoria, String anoFabricacao, int quantidade, double preco) {
         this.nome = nome;
         this.renavam = renavam;
         this.categoria = categoria;
         this.anoFabricacao = anoFabricacao;
         this.quantidade = quantidade;
         this.preco = preco;
+        this.id = id;
     }
 
     public Carro () {
         
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -72,8 +83,8 @@ public class Carro implements Serializable{
 
     @Override
     public String toString() {
-        return "Carro { " + "nome = " + nome + ", renavam = " + renavam + ", categoria = " +
-         categoria + ", anoFabricacao = " + anoFabricacao + ", quantidade = " + quantidade + ", preco = " + preco + '}';
+        return nome + ": renavam = " + renavam + ", categoria = " +
+         categoria + ", anoFabricacao = " + anoFabricacao + ", quantidade = " + quantidade + ", preco = " + preco;
     }
 
 
