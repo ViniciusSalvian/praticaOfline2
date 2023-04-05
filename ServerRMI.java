@@ -14,20 +14,9 @@ public class ServerRMI extends SistemaImpl {
             
             SistemaImpl sistemaImpl = new SistemaImpl();
             ISistema stub = (ISistema) UnicastRemoteObject.exportObject(sistemaImpl, 0);
-            LocateRegistry.createRegistry(20002);
-            Registry registro = LocateRegistry.getRegistry(20002);
-            registro.rebind("Sistema", stub);
-           // String objNome = "rmi://localhost:20003/Sistema";
-           // LocateRegistry.createRegistry(20003);
-           // Naming.rebind(objNome, new SistemaImpl());
-
-            // Sistema skeleton =
-            // (Sistema) UnicastRemoteObject
-            // .exportObject(refObjetoRemoto, 0);
-            // Registry registro =
-            // LocateRegistry
-            // .getRegistry("127.0.0.1",20003);
-            // registro.bind("Sistema", skeleton);
+            LocateRegistry.createRegistry(Registry.REGISTRY_PORT);
+            Registry registro = LocateRegistry.getRegistry(InetAddress.getLocalHost().getHostAddress());
+            registro.rebind("Sistema",stub);
             System.out.println("Servidor pronto:");
         } catch (Exception e) {
         System.err.println("Servidor: " + e.toString());

@@ -21,14 +21,15 @@ public class Cliente {
 
         try {
 
-            Registry registro = LocateRegistry.getRegistry(host, 20002);
+            Registry registro = LocateRegistry.getRegistry(host);
 
             ISistema stub = (ISistema) registro.lookup("Sistema");
 
-           
+            var teste = stub.oi();
+            Carro car = new Carro("Fiat Uno", "123456789", "economico", "2010", 1, 10000);
             // ISistema stub = (ISistema) Naming.lookup("rmi://localhost:20003/Sistema");
-            stub.adicionaCarro(new Carro("Fiat Uno", "123456789", "economico", "2010", 1, 10000));
-            var list = stub.getCarroList();
+            System.out.println(teste.toString());
+            var list = stub.adicionaCarro(car);
 
             teclado.close();
             System.out.println(list);
