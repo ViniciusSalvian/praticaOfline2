@@ -72,7 +72,8 @@ public class Carro implements Serializable{
 
     @Override
     public String toString() {
-        return "Carro{" + "nome=" + nome + ", renavam=" + renavam + ", categoria=" + categoria + ", anoFabricacao=" + anoFabricacao + ", quantidade=" + quantidade + ", preco=" + preco + '}';
+        return "Carro { " + "nome = " + nome + ", renavam = " + renavam + ", categoria = " +
+         categoria + ", anoFabricacao = " + anoFabricacao + ", quantidade = " + quantidade + ", preco = " + preco + '}';
     }
 
 

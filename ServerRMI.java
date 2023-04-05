@@ -15,8 +15,8 @@ public class ServerRMI extends SistemaImpl {
             SistemaImpl sistemaImpl = new SistemaImpl();
             ISistema stub = (ISistema) UnicastRemoteObject.exportObject(sistemaImpl, 0);
             LocateRegistry.createRegistry(Registry.REGISTRY_PORT);
-            Registry registro = LocateRegistry.getRegistry(InetAddress.getLocalHost().getHostAddress());
-            registro.rebind("Sistema",stub);
+            Registry registro = LocateRegistry.getRegistry(Registry.REGISTRY_PORT);
+            registro.bind("Sistema",stub);
             System.out.println("Servidor pronto:");
         } catch (Exception e) {
         System.err.println("Servidor: " + e.toString());
