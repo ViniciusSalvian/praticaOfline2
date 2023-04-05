@@ -29,10 +29,11 @@ public class Cliente {
             Carro car = new Carro("Fiat Uno", "123456789", "economico", "2010", 1, 10000);
             // ISistema stub = (ISistema) Naming.lookup("rmi://localhost:20003/Sistema");
             System.out.println(teste.toString());
-            var list = stub.adicionaCarro(car);
+            
+            stub.adicionaCarro(car);
 
             teclado.close();
-            System.out.println(list);
+            System.out.println(stub.getCarroList());
         } catch (NotBoundException |RemoteException e) {
             e.printStackTrace();
         } 

@@ -3,7 +3,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 
 public class SistemaImpl implements ISistema {
-    public List<Carro> carroList;
+    private List<Carro> carroList;
 
     public Carro oi() {
         return new Carro("Fiat Uno", "123456789", "economico", "2010", 1, 10000);
@@ -27,9 +27,9 @@ public class SistemaImpl implements ISistema {
         return null;
     }
 
-    public List<Carro> adicionaCarro(Carro carro) throws RemoteException {
+    public void adicionaCarro(Carro carro) throws RemoteException {
         carroList.add(carro);
-        return carroList;
+        //return carroList;
     }
 
     public void removeCarro(Carro carro) throws RemoteException {
