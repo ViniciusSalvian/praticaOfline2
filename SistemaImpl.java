@@ -67,6 +67,37 @@ public class SistemaImpl implements ISistema {
         carroList.remove(index);
     }
 
+    public void vendendo(Carro carro) throws RemoteException{
+        if(carro.getQuantidade() == 0){
+            removeCarro(carro);
+        }else{
+            carro.vendendo();
+        }
+        
+    }
+
+    public void editaCarroById(int id, Carro carro) throws RemoteException {
+        Carro car = buscaCarroById(id);
+        int index = carroList.indexOf(car);
+
+        carroList.set(index, carro);
+    }
+    public void removeCarroById(int id) throws RemoteException {
+        Carro car = buscaCarroById(id);
+        int index = carroList.indexOf(car);
+
+        carroList.remove(index);
+    }
+
+    public Carro buscaCarroById(int id) throws RemoteException {
+        for (Carro carro : carroList) {
+            if (carro.getId() == id) {
+                return carro;
+            }
+        }
+        return null;
+    }
+
     public List<Carro> getCarroList() throws RemoteException {
         return carroList;
     }

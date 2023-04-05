@@ -81,9 +81,14 @@ public class Carro implements Serializable{
         this.preco = preco;
     }
 
+    public int vendendo(){
+        this.quantidade--;
+        return quantidade;
+    }
+
     @Override
     public String toString() {
-        return nome + ": renavam = " + renavam + ", categoria = " +
+        return id + " " + nome + ": renavam = " + renavam + ", categoria = " +
          categoria + ", anoFabricacao = " + anoFabricacao + ", quantidade = " + quantidade + ", preco = " + preco;
     }
 

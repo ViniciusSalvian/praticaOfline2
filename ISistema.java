@@ -10,4 +10,8 @@ public interface ISistema extends Remote {
     List<Carro> getCarroList() throws RemoteException;
     User login(String username, String password) throws RemoteException;
     List<User> getUserList() throws RemoteException;
+    void vendendo(Carro carro) throws RemoteException;
+    void removeCarroById(int id) throws RemoteException;
+    Carro buscaCarroById(int id) throws RemoteException;
+    void editaCarroById(int id, Carro carro) throws RemoteException;
 }
