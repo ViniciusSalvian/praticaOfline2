@@ -26,9 +26,7 @@ public class Cliente {
 
                 user = stub.login(login, senha);
                 if(user == null) System.out.println("Login ou senha incorretos");
-            }
-
-            
+            }            
 
             switch (user.getTipo()) {
                 case "Cliente":
@@ -162,9 +160,9 @@ public class Cliente {
                     String renavamCarro = scanner.nextLine();
                     System.out.println("Digite o ano do carro: ");
                     String anoCarro = scanner.nextLine();
-                    System.out.println("Digite o valor do carro: ");
+                    System.out.println("Digite a quantidade do carro em estoque: ");
                     int quantidade = scanner.nextInt();
-                    System.out.println("Digite o tipo do carro: ");
+                    System.out.println("Digite o preço do carro: ");
                     Double preco = scanner.nextDouble();
                     System.out.println("Digite o tipo do carro: 1 - Economico, 2 - Intermediário, 3 - Executivo");
                     int tipo = scanner.nextInt();
@@ -193,20 +191,24 @@ public class Cliente {
                     System.out.println("Digite o id do carro: ");
                     int idCarro2 = scanner.nextInt();
                     var carro2 = stub.buscaCarroById(idCarro2);
-                    carro2.toString();
+                    System.out.println(carro2.toString()); 
+                    scanner.nextLine();
                     System.out.println("Digite o nome do carro para ser alterado: ");
                     String nomeCarro2 = scanner.nextLine();
                     System.out.println("Digite o renavam do carro para ser alterado: ");
                     String renavamCarro2 = scanner.nextLine();
                     System.out.println("Digite o ano do carro para ser alterado: ");
                     String anoCarro2 = scanner.nextLine();
-                    System.out.println("Digite o valor do carro para ser alterado: ");
+                    System.out.println("Digite a quantidade do carro em estoque: ");
                     int quantidade2 = scanner.nextInt();
                     System.out.println("Digite o preço do carro para ser alterado: ");
                     Double preco2 = scanner.nextDouble();
 
                     stub.editaCarroById(idCarro2, new Carro(idCarro2, nomeCarro2, renavamCarro2, anoCarro2, carro2.getCategoria() , quantidade2, preco2));
                     System.out.println("Carro editado com sucesso!");
+                    break;
+
+                    case "0":
                     break;
 
                 default:
@@ -219,7 +221,7 @@ public class Cliente {
 
     public static void listaCarros(ISistema stub) throws RemoteException {
          List<Carro> carros = stub.getCarroList();
-         System.out.println("=============Lista de carros=============");
+         System.out.println("================ Lista de carros ================");
          carros.forEach((car)->{
              System.out.println(car.toString());
          });
