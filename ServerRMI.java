@@ -1,17 +1,13 @@
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
 
 public class ServerRMI extends SistemaImpl {
 
     public ServerRMI() throws Exception {
-        
     }
     public static void main(String args[]) {
         try {
-            
             SistemaImpl sistemaImpl = new SistemaImpl();
             ISistema stub = (ISistema) UnicastRemoteObject.exportObject(sistemaImpl, 0);
             LocateRegistry.createRegistry(Registry.REGISTRY_PORT);

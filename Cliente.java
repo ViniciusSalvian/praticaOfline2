@@ -7,11 +7,6 @@ import java.util.Scanner;
 
 public class Cliente {
     static Scanner scanner = new Scanner(System.in);
-
-    private Cliente() {
-
-    }
-
     public static void main(String[] args) {
         try {
             Registry registro = LocateRegistry.getRegistry("localhost");
