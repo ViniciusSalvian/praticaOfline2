@@ -34,7 +34,7 @@ public class Cliente {
                     menuCliente(stub);
                     break;
                 case "Funcionario":
-                    System.out.println("Bem vindo " + user.getNome()+ "Vocês é um funcionario");
+                    System.out.println("Bem vindo " + user.getNome()+ " você é um funcionario");
                     menuFuncionario(stub);
                     break;
             }
