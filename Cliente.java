@@ -155,6 +155,7 @@ public class Cliente {
                     System.out.println("Digite o id do carro: ");
                     int id = scanner.nextInt();
                     System.out.println("Digite o nome do carro: ");
+                    scanner.nextLine();
                     String nomeCarro = scanner.nextLine();
                     System.out.println("Digite o renavam do carro: ");
                     String renavamCarro = scanner.nextLine();
@@ -166,6 +167,7 @@ public class Cliente {
                     Double preco = scanner.nextDouble();
                     System.out.println("Digite o tipo do carro: 1 - Economico, 2 - Intermediário, 3 - Executivo");
                     int tipo = scanner.nextInt();
+                    scanner.nextLine();
 
                     if(tipo == 1){
                         stub.adicionaCarro(new Economico(id, nomeCarro, renavamCarro, anoCarro, quantidade, preco));
@@ -185,6 +187,7 @@ public class Cliente {
                     int idCarro = scanner.nextInt();
                     stub.removeCarroById(idCarro);
                     System.out.println("Carro removido com sucesso!");
+                    scanner.nextLine();
                     break;
 
                 case "6": 
@@ -203,12 +206,14 @@ public class Cliente {
                     int quantidade2 = scanner.nextInt();
                     System.out.println("Digite o preço do carro para ser alterado: ");
                     Double preco2 = scanner.nextDouble();
+                    scanner.nextLine();
 
                     stub.editaCarroById(idCarro2, new Carro(idCarro2, nomeCarro2, renavamCarro2, anoCarro2, carro2.getCategoria() , quantidade2, preco2));
                     System.out.println("Carro editado com sucesso!");
                     break;
 
-                    case "0":
+                case "0":
+                    flag = true;
                     break;
 
                 default:
@@ -225,6 +230,8 @@ public class Cliente {
          carros.forEach((car)->{
              System.out.println(car.toString());
          });
+
+         System.out.println("==================================================");
     }
 
 
