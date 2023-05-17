@@ -9,8 +9,8 @@ public class Cliente {
     static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
         try {
-            Registry registro = LocateRegistry.getRegistry("localhost");
-            ISistema stub = (ISistema) registro.lookup("Sistema");
+            Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+            ISistema stub = (ISistema) registry.lookup("ServiceGateway");
             User user = null;
 
             while (user == null) {

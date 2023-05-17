@@ -5,9 +5,11 @@ import java.util.List;
 public class SistemaImpl implements ISistema {
     private List<Carro> carroList;
     private List<User> userList;
+    private boolean lider;
 
-    public SistemaImpl() throws RemoteException {
+    public SistemaImpl(boolean lider) throws RemoteException {
         super();
+        this.lider = lider;
         carroList = new ArrayList<Carro>();
         userList = new ArrayList<User>();
         userList.add(new UserCliente("valdir", "trollita", "123321"));
@@ -109,6 +111,13 @@ public class SistemaImpl implements ISistema {
 
     public List<User> getUserList() {
         return userList;
+    }
+
+    @Override
+    public void atualizaReplica(List<Carro> carroList, List<User> userList) throws RemoteException {
+        if(!lider){
+            //Muita fé
+        }
     }
 
 }

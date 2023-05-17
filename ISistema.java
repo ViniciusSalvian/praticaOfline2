@@ -14,4 +14,5 @@ public interface ISistema extends Remote {
     void removeCarroById(int id) throws RemoteException;
     Carro buscaCarroById(int id) throws RemoteException;
     void editaCarroById(int id, Carro carro) throws RemoteException;
+    void atualizaReplica(List<Carro> carroList, List<User> userList) throws RemoteException;
 }
