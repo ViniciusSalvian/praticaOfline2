@@ -9,9 +9,9 @@ public class Server {
         try {
             // Crie as réplicas da aplicação
             List<ISistema> replicas = new ArrayList<>();
-            replicas.add(new SistemaImpl(false));
-            replicas.add(new SistemaImpl(false));
-            replicas.add(new SistemaImpl(true));
+            replicas.add(new SistemaImpl());
+            replicas.add(new SistemaImpl());
+            replicas.add(new SistemaImpl());
 
             // Crie o serviço gateway
             ServiceGatewayImpl gateway = new ServiceGatewayImpl(replicas);

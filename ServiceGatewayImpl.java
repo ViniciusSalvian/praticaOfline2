@@ -1,6 +1,5 @@
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ServiceGatewayImpl extends UnicastRemoteObject implements ISistema {
@@ -8,7 +7,7 @@ public class ServiceGatewayImpl extends UnicastRemoteObject implements ISistema 
     private int currentReplicaIndex;
 
     public ServiceGatewayImpl(List<ISistema> replicas) throws RemoteException {
-        this.replicas = new ArrayList<>(replicas);
+        this.replicas = replicas;
         currentReplicaIndex = 0;
     }
 
@@ -21,64 +20,81 @@ public class ServiceGatewayImpl extends UnicastRemoteObject implements ISistema 
 
     @Override
     public Carro buscaCarroByName(String name) throws RemoteException {
-        return replicas.get(currentReplicaIndex).buscaCarroByName(name);
+        var carro = getNextReplica().buscaCarroByName(name);
+        return carro;
     }
 
     @Override
     public Carro buscaCarroByRenavam(String renavam) throws RemoteException {
-       return replicas.get(currentReplicaIndex).buscaCarroByRenavam(renavam);
+        var carro = getNextReplica().buscaCarroByRenavam(renavam);
+        return carro;
     }
 
     @Override
-    public List<Carro> adicionaCarro(Carro carro) throws RemoteException {
-        return replicas.get(currentReplicaIndex).adicionaCarro(carro);
+    public void adicionaCarro(Carro carro) throws RemoteException {
+        var replicaAtual = getNextReplica();
+        replicaAtual.adicionaCarro(carro);
+        atualizaReplica(replicaAtual.getCarroList(), replicaAtual.getUserList());
     }
 
     @Override
     public void removeCarro(Carro carro) throws RemoteException {
-        replicas.get(currentReplicaIndex).removeCarro(carro);
+        var replicaAtual = getNextReplica();
+        replicaAtual.removeCarro(carro);
+        atualizaReplica(replicaAtual.getCarroList(), replicaAtual.getUserList());
     }
 
     @Override
     public List<Carro> getCarroList() throws RemoteException {
         System.out.println("Retornou lista de Carro na replica:" + currentReplicaIndex);
-        var list = replicas.get(currentReplicaIndex).getCarroList();
-        getNextReplica();
-        return list;
+
+        var listCarro = getNextReplica().getCarroList();
+        return listCarro;
     }
 
     @Override
     public User login(String username, String password) throws RemoteException {
-       return replicas.get(currentReplicaIndex).login(username, password);
+        var user = getNextReplica().login(username, password);
+        return user;
     }
 
     @Override
     public List<User> getUserList() throws RemoteException {
-        return replicas.get(currentReplicaIndex).getUserList();
+        var listUser = getNextReplica().getUserList();
+        return listUser;
     }
 
     @Override
     public void vendendo(Carro carro) throws RemoteException {
-        replicas.get(currentReplicaIndex).vendendo(carro);
+        var replicaAtual = getNextReplica();
+        replicaAtual.vendendo(carro);
+        atualizaReplica(replicaAtual.getCarroList(), replicaAtual.getUserList());
     }
 
     @Override
     public void removeCarroById(int id) throws RemoteException {
-        replicas.get(currentReplicaIndex).removeCarroById(id);
+        var replicaAtual = getNextReplica();
+        replicaAtual.removeCarroById(id);
+        atualizaReplica(replicaAtual.getCarroList(), replicaAtual.getUserList());
     }
 
     @Override
     public Carro buscaCarroById(int id) throws RemoteException {
-        return replicas.get(currentReplicaIndex).buscaCarroById(id);
+        var carro = getNextReplica().buscaCarroById(id);
+        return carro;
     }
 
     @Override
     public void editaCarroById(int id, Carro carro) throws RemoteException {
-        replicas.get(currentReplicaIndex).editaCarroById(id, carro);
+        var replicaAtual = getNextReplica();
+        replicaAtual.editaCarroById(id, carro);
+        atualizaReplica(replicaAtual.getCarroList(), replicaAtual.getUserList());
     }
 
     @Override
     public void atualizaReplica(List<Carro> carroList, List<User> userList) throws RemoteException {
-        
+        for(ISistema replica : replicas){
+            replica.atualizaReplica(carroList, userList);
+        }
     }
 }

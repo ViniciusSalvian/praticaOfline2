@@ -5,16 +5,14 @@ import java.util.List;
 public class SistemaImpl implements ISistema {
     private List<Carro> carroList;
     private List<User> userList;
-    private boolean lider;
 
-    public SistemaImpl(boolean lider) throws RemoteException {
+    public SistemaImpl() throws RemoteException {
         super();
-        this.lider = lider;
         carroList = new ArrayList<Carro>();
         userList = new ArrayList<User>();
         userList.add(new UserCliente("valdir", "trollita", "123321"));
         userList.add(new UserCliente("jaco", "jacogames", "123456"));
-        userList.add(new Funcionario("vinicius", "inhegaz", "12345678"));
+        userList.add(new Funcionario("vinicius", "inhegaz", "123"));
 
         carroList.add(new Economico(1, "Fiat Novo uno", "1234567890", "2012", 1, 40000));
         carroList.add(new Economico(2, "Chevrolet onix", "123123321", "2014", 1, 450000));
@@ -59,9 +57,8 @@ public class SistemaImpl implements ISistema {
         return null;
     }
 
-    public List<Carro> adicionaCarro(Carro carro) throws RemoteException {
+    public void adicionaCarro(Carro carro) throws RemoteException {
         this.carroList.add(carro);
-        return carroList;
     }
 
     public void removeCarro(Carro carro) throws RemoteException {
@@ -115,9 +112,8 @@ public class SistemaImpl implements ISistema {
 
     @Override
     public void atualizaReplica(List<Carro> carroList, List<User> userList) throws RemoteException {
-        if(!lider){
-            //Muita fé
-        }
+        this.carroList = carroList;
+        this.userList = userList;
     }
 
 }
