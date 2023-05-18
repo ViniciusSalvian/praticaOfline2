@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class Cliente {
     static Scanner scanner = new Scanner(System.in);
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         try {
             Registry registry = LocateRegistry.getRegistry("localhost", 1099);
             ISistema stub = (ISistema) registry.lookup("ServiceGateway");
@@ -21,7 +21,7 @@ public class Cliente {
 
                 user = stub.login(login, senha);
                 if(user == null) System.out.println("Login ou senha incorretos");
-            }            
+            }
 
             switch (user.getTipo()) {
                 case "Cliente":
